@@ -19,13 +19,11 @@ public class PatientService {
     public Patient getPatientById(Long id) {
 
         Patient patient1 = patientRepository.findById(id).orElseThrow();
-
         Patient patient2 = patientRepository.findById(id).orElseThrow();
 
         System.out.println(patient1 == patient2);
 
         patient1.setName("ArijitSingh");
-
         return patient1;
     }
 }

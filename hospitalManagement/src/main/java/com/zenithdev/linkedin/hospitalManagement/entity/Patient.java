@@ -1,9 +1,11 @@
 package com.zenithdev.linkedin.hospitalManagement.entity;
 
+import com.zenithdev.linkedin.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,14 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(
-        name = "patient_tbl",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "unique_patient_email", columnNames = {"email"}),
-                @UniqueConstraint(name = "unique_patient_name", columnNames = {"name"})
-                },
-        indexes = {
-                @Index(name = "idx_patient_email", columnList = "email")
-        }
+        name = "patient"
 )
 public class Patient {
 
@@ -28,19 +23,23 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "patient_name")
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @ToString.Exclude
+    @Column(nullable = false)
+    private String gender;
+
+//    @ToString.Exclude
     private LocalDate birthDate;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String gender;
-
+    @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime patientCreatedAt;
+
+    @Enumerated(EnumType.STRING)
+    private BloodGroupType blood_group;
 
 }

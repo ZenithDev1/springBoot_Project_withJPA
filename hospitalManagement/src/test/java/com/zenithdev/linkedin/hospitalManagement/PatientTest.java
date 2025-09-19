@@ -1,6 +1,7 @@
 package com.zenithdev.linkedin.hospitalManagement;
 
 import com.zenithdev.linkedin.hospitalManagement.entity.Patient;
+import com.zenithdev.linkedin.hospitalManagement.entity.type.BloodGroupType;
 import com.zenithdev.linkedin.hospitalManagement.repository.PatientRepository;
 import com.zenithdev.linkedin.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
@@ -29,13 +30,23 @@ public class PatientTest {
     public void testTransactionMethods(){
 
 //        List<Patient> patientList = patientRespository.findByBirthDateOrEmail(LocalDate.of(1992,12,01), "kabir.singh@example.com");
+
+          //List<Patient> patientList = patientRespository.findByBloodGroup(BloodGroupType.A_NEGATIVE);
+
+        //List<Patient> patientList = patientRespository.findByBornAfterDate(LocalDate.of(1988,01,06));
+
+//        List<Patient> patientList = patientRespository.findAll();
 //
+//        for (Patient patient : patientList) {
+//            System.out.println(patient);
+//        }
+//
+//        List<Object[]> bloodGroupList = patientRespository.countEachBloodGroupType();
+//        for(Object[] bloodGroup : bloodGroupList){
+//            System.out.println(bloodGroup[0] + " " + bloodGroup[1]);
+//        }
 
-
-          List<Patient> patientList = patientRespository.findByNameContaining("Di");
-
-        for (Patient patient : patientList) {
-            System.out.println(patient);
-        }
+        int rowsUpdated = patientRespository.updateNameWithId("Arav Sharma", 1L);
+        System.out.println(rowsUpdated);
     }
 }

@@ -1,5 +1,6 @@
 package com.zenithdev.linkedin.hospitalManagement;
 
+import com.zenithdev.linkedin.hospitalManagement.dto.BloodGroupCountResponseEntity;
 import com.zenithdev.linkedin.hospitalManagement.entity.Patient;
 import com.zenithdev.linkedin.hospitalManagement.entity.type.BloodGroupType;
 import com.zenithdev.linkedin.hospitalManagement.repository.PatientRepository;
@@ -7,6 +8,8 @@ import com.zenithdev.linkedin.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -46,7 +49,19 @@ public class PatientTest {
 //            System.out.println(bloodGroup[0] + " " + bloodGroup[1]);
 //        }
 
-        int rowsUpdated = patientRespository.updateNameWithId("Arav Sharma", 1L);
-        System.out.println(rowsUpdated);
+//        int rowsUpdated = patientRespository.updateNameWithId("Arav Sharma", 1L);
+//        System.out.println(rowsUpdated);
+
+//        List<BloodGroupCountResponseEntity> bloodGroupList = patientRespository.countEachBloodGroupType();
+//        for(BloodGroupCountResponseEntity bloodGroupCountResponse : bloodGroupList){
+//            System.out.println(bloodGroupCountResponse);
+//        }
+
+        Page<Patient> patientList = patientRespository.findAllPatient(PageRequest.of(0,3, Sort.by("name")));
+
+        for (Patient patient : patientList) {
+            System.out.println(patient);
+        }
+
     }
 }

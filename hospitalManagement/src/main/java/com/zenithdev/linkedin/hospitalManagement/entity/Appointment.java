@@ -26,7 +26,7 @@ public class Appointment {
     private String reason;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id", nullable = false) // patient canot be null in appointment
+    @JoinColumn(name = "patient_id", nullable = false) // patient canot be null in appointment bcz, patient is required for appointment registration.
     private Patient patient;
 
     @ManyToOne

@@ -20,12 +20,12 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-    Patient findByName(String name);
-    List<Patient> findByBirthDateOrEmail(LocalDate birthday, String email);
+    Patient findByPatientName(String name);
+    List<Patient> findByBirthDateOrPatientEmail(LocalDate birthday, String email);
 
     List<Patient> findByBirthDateBetween(LocalDate startDate, LocalDate endDate);
 
-    List<Patient> findByNameContaining(String query);
+    List<Patient> findByPatientNameContaining(String query);
 
     @Query("SELECT p FROM Patient p where p.blood_group =?1")
     List<Patient> findByBloodGroup(@Param("bloodGroup") BloodGroupType bloodGroup);
@@ -43,7 +43,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Patient p SET p.name = :name where p.id = :id")
-    int updateNameWithId(@Param("name") String name, @Param("id") Long id);
+    @Query("UPDATE Patient p SET p.patientName = :name where p.patientId = :id")
+    int updatePatientNameWithId(@Param("name") String name, @Param("id") Long id);
 
 }

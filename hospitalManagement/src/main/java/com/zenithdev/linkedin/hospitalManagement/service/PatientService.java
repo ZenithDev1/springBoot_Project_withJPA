@@ -23,7 +23,7 @@ public class PatientService {
 
         System.out.println(patient1 == patient2);
 
-        patient1.setName("ArijitSingh");
+        patient1.setPatientName("ArijitSingh");
         return patient1;
     }
 }

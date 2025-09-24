@@ -22,19 +22,19 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long patientId;
 
     @Column(nullable = false, length = 20)
-    private String name;
+    private String patientName;
 
     @Column(nullable = false)
-    private String gender;
+    private String patientGender;
 
 //    @ToString.Exclude
     private LocalDate birthDate;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String patientEmail;
 
     @CreationTimestamp
     @Column(updatable = false)

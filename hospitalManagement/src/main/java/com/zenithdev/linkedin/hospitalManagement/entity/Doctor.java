@@ -3,6 +3,8 @@ package com.zenithdev.linkedin.hospitalManagement.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -26,4 +28,7 @@ public class Doctor{
 
 //    @OneToMany
 //    private Appointment appointment;
+
+    @ManyToMany(mappedBy = "doctors")
+    private Set<Department> departments;
 }

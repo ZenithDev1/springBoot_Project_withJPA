@@ -3,6 +3,8 @@ package com.zenithdev.linkedin.hospitalManagement.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,17 +19,17 @@ public class Doctor{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long doctorId;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String doctorName;
 
-    @Column(nullable = false, length = 18)
+    @Column(nullable = false, length = 50)
     private String specializationOfDoctor;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, unique = true, length = 50)
     private String doctorEmail;
 
-//    @OneToMany
-//    private Appointment appointment;
+    @OneToMany(mappedBy ="doctor")
+    private List<Appointment> appointment = new ArrayList<>();
 
     @ManyToMany(mappedBy = "doctors")
     private Set<Department> departments;

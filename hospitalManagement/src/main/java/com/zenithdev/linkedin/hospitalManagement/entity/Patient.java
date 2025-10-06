@@ -46,9 +46,10 @@ public class Patient {
 
     //               MERGE works 4Updation,  PERSIST works for InitialTime
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "patient_insurance_id") // owningSide
+    @JoinColumn(name = "patient_insurance_id", nullable = true) // owningSide
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 }

@@ -28,11 +28,14 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
+    //@ToString.Exclude  use exclude to print all the patient just for Testing purpose only
     // patient canot be null in appointment bcz, patient is required for appointment registration.
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     @JoinColumn(nullable = false)
+    //@ToString.Exclude  use exclude to print all the patient just for Testing purpose only
     private Doctor doctor;
 
 }

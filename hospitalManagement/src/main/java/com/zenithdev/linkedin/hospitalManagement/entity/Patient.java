@@ -31,7 +31,7 @@ public class Patient {
     @Column(nullable = false)
     private String patientGender;
 
-//    @ToString.Exclude
+    //    @ToString.Exclude
     private LocalDate birthDate;
 
     @Column(unique = true, nullable = false)
@@ -45,7 +45,8 @@ public class Patient {
     private BloodGroupType blood_group;
 
     //               MERGE works 4Updation,  PERSIST works for InitialTime
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    // @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id", nullable = true) // owningSide
     private Insurance insurance;
 

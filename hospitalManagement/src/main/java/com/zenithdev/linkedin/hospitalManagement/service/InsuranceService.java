@@ -29,8 +29,9 @@ public class InsuranceService {
     public Patient disaccociateInsuranceFromPatient(Long patientId){
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(()-> new EntityNotFoundException("Patient not found with id: " + patientId));
+        patient.setInsurance(null);
 
-
+        return patient;
     }
 
 

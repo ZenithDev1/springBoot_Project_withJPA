@@ -1,5 +1,8 @@
 package com.zenithdev.linkedin.hospitalManagement.controller;
 
+import com.zenithdev.linkedin.hospitalManagement.dto.DoctorResponseDto;
+import com.zenithdev.linkedin.hospitalManagement.dto.OnboardDoctorRequestDto;
+import com.zenithdev.linkedin.hospitalManagement.service.DoctorService;
 import com.zenithdev.linkedin.hospitalManagement.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

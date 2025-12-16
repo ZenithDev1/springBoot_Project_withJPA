@@ -1,6 +1,5 @@
 package com.zenithdev.linkedin.hospitalManagement;
 
-import com.zenithdev.linkedin.hospitalManagement.entity.Appointment;
 import com.zenithdev.linkedin.hospitalManagement.entity.Insurance;
 import com.zenithdev.linkedin.hospitalManagement.entity.Patient;
 import com.zenithdev.linkedin.hospitalManagement.service.AppointmentService;

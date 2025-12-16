@@ -13,16 +13,15 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Department{
-
+@AllArgsConstructor
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long DepartmentId;
+    private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String departmentName;
+    @Column(nullable = false, unique = true, length = 100)
+    private String name;
 
     @OneToOne
     private Doctor headDoctor;
@@ -34,4 +33,5 @@ public class Department{
             inverseJoinColumns = @JoinColumn(name = "doctor_id")
     )
     private Set<Doctor> doctors = new HashSet<>();
+
 }

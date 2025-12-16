@@ -8,21 +8,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Insurance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int insuranceId;
+    private Long id;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = true, length = 50)
     private String policyNumber;
 
-    @Column(nullable = false, unique = true, length =30)
+    @Column(nullable = false, length = 100)
     private String provider;
 
     @Column(nullable = false)
@@ -32,8 +32,7 @@ public class Insurance {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "patient_insuranceId")
+    @OneToOne(mappedBy = "insurance") // inverse side
     private Patient patient;
 
 }

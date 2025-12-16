@@ -4,33 +4,38 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class Doctor{
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long doctorId;
+    private Long id;
 
-    @Column(nullable = false, length = 50)
-    private String doctorName;
+    @OneToOne
+    @MapsId
+    private User user;
 
-    @Column(nullable = false, length = 50)
-    private String specializationOfDoctor;
+    @Column(nullable = false, length = 100)
+    private String name;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String doctorEmail;
+    @Column(length = 100)
+    private String specialization;
 
-    @OneToMany(mappedBy ="doctor")
-    private List<Appointment> appointment = new ArrayList<>();
+    @Column(unique = true, length = 100)
+    private String email;
 
     @ManyToMany(mappedBy = "doctors")
-    private Set<Department> departments;
+    private Set<Department> departments = new HashSet<>();
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments = new ArrayList<>();
+
 }

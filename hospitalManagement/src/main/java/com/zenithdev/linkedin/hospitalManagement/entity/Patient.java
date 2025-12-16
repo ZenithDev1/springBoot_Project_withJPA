@@ -2,9 +2,7 @@ package com.zenithdev.linkedin.hospitalManagement.entity;
 
 import com.zenithdev.linkedin.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -17,40 +15,50 @@ import java.util.List;
 @Getter
 @Setter
 @Table(
-        name = "patient"
+        name = "patient",
+        uniqueConstraints = {
+//                @UniqueConstraint(name = "unique_patient_email", columnNames = {"email"}),
+                @UniqueConstraint(name = "unique_patient_name_birthdate", columnNames = {"name", "birthDate"})
+        },
+        indexes = {
+                @Index(name = "idx_patient_birth_date", columnList = "birthDate")
+        }
 )
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientId;
+    private Long id;
 
-    @Column(nullable = false, length = 20)
-    private String patientName;
-
-    @Column(nullable = false)
-    private String patientGender;
+    @Column(nullable = false, length = 40)
+    private String name;
 
     //    @ToString.Exclude
     private LocalDate birthDate;
 
     @Column(unique = true, nullable = false)
-    private String patientEmail;
+    private String email;
+
+    private String gender;
+
+    @OneToOne
+    @MapsId
+    private User user;
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDateTime patientCreatedAt;
+    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
-    private BloodGroupType blood_group;
+    private BloodGroupType bloodGroup;
 
-    //               MERGE works 4Updation,  PERSIST works for InitialTime
-    // @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
-    @JoinColumn(name = "patient_insurance_id", nullable = true) // owningSide
+    @JoinColumn(name = "patient_insurance_id") // owning side
     private Insurance insurance;
 
-
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Appointment> appointments = new ArrayList<>();
 }

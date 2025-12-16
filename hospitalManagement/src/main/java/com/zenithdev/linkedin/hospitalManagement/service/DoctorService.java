@@ -6,6 +6,7 @@ import com.zenithdev.linkedin.hospitalManagement.entity.Doctor;
 import com.zenithdev.linkedin.hospitalManagement.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class DoctorService {
 
     private final DoctorRepository doctorRepository;
     private final ModelMapper modelMapper;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
     public List<DoctorResponseDto> getAllDoctors() {
         return doctorRepository.findAll()
@@ -28,22 +29,22 @@ public class DoctorService {
     }
 
 
-    @Transactional
-    public DoctorResponseDto onBoardNewDoctor(OnboardDoctorRequestDto onBoardDoctorRequestDto) {
-        User user = userRepository.findById(onBoardDoctorRequestDto.getUserId()).orElseThrow();
-
-        if(doctorRepository.existsById(onBoardDoctorRequestDto.getUserId())) {
-            throw new IllegalArgumentException("Already a doctor");
-        }
-
-        Doctor doctor = Doctor.builder()
-                .name(onBoardDoctorRequestDto.getName())
-                .specialization(onBoardDoctorRequestDto.getSpecialization())
-                .user(user)
-                .build();
-
-        user.getRoles().add(RoleType.DOCTOR);
-
-        return modelMapper.map(doctorRepository.save(doctor), DoctorResponseDto.class);
-    }
+//    @Transactional
+//    public DoctorResponseDto onBoardNewDoctor(OnboardDoctorRequestDto onBoardDoctorRequestDto) {
+//        User user = userRepository.findById(onBoardDoctorRequestDto.getUserId()).orElseThrow();
+//
+//        if(doctorRepository.existsById(onBoardDoctorRequestDto.getUserId())) {
+//            throw new IllegalArgumentException("Already a doctor");
+//        }
+//
+//        Doctor doctor = Doctor.builder()
+//                .name(onBoardDoctorRequestDto.getName())
+//                .specialization(onBoardDoctorRequestDto.getSpecialization())
+//                .user(user)
+//                .build();
+//
+//        user.getRoles().add(RoleType.DOCTOR);
+//
+//        return modelMapper.map(doctorRepository.save(doctor), DoctorResponseDto.class);
+//    }
 }

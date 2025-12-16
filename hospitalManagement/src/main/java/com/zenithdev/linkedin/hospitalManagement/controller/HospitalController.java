@@ -1,5 +1,7 @@
 package com.zenithdev.linkedin.hospitalManagement.controller;
 
+import com.zenithdev.linkedin.hospitalManagement.dto.DoctorResponseDto;
+import com.zenithdev.linkedin.hospitalManagement.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

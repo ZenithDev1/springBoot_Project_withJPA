@@ -1,5 +1,8 @@
 package com.zenithdev.linkedin.hospitalManagement.controller;
 
+import com.zenithdev.linkedin.hospitalManagement.dto.AppointmentResponseDto;
+import com.zenithdev.linkedin.hospitalManagement.dto.CreateAppointmentRequestDto;
+import com.zenithdev.linkedin.hospitalManagement.dto.PatientResponseDto;
 import com.zenithdev.linkedin.hospitalManagement.service.AppointmentService;
 import com.zenithdev.linkedin.hospitalManagement.service.PatientService;
 import lombok.RequiredArgsConstructor;

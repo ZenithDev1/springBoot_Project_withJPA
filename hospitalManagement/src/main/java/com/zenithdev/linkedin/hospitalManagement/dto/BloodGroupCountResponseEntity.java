@@ -13,6 +13,5 @@ import lombok.ToString;
 public class BloodGroupCountResponseEntity {
 
     private BloodGroupType bloodGroupType;
-
-    private long count;
+    private Long count;
 }

@@ -2,12 +2,15 @@ package com.zenithdev.linkedin.hospitalManagement.controller;
 
 import com.zenithdev.linkedin.hospitalManagement.dto.DoctorResponseDto;
 import com.zenithdev.linkedin.hospitalManagement.dto.OnboardDoctorRequestDto;
+import com.zenithdev.linkedin.hospitalManagement.dto.PatientResponseDto;
 import com.zenithdev.linkedin.hospitalManagement.service.DoctorService;
 import com.zenithdev.linkedin.hospitalManagement.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -25,8 +28,8 @@ public class AdminController {
         return ResponseEntity.ok(patientService.getAllPatients(pageNumber, pageSize));
     }
 
-    @PostMapping("/onBoardNewDoctor")
-    public ResponseEntity<DoctorResponseDto> onBoardNewDoctor(@RequestBody OnboardDoctorRequestDto onboardDoctorRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(doctorService.onBoardNewDoctor(onboardDoctorRequestDto));
-    }
+//    @PostMapping("/onBoardNewDoctor")
+//    public ResponseEntity<DoctorResponseDto> onBoardNewDoctor(@RequestBody OnboardDoctorRequestDto onboardDoctorRequestDto) {
+//        return ResponseEntity.status(HttpStatus.CREATED).body(doctorService.onBoardNewDoctor(onboardDoctorRequestDto));
+//    }
 }

@@ -19,22 +19,22 @@ import java.util.List;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
+    Patient findByName(String name);
 
-    Patient findByPatientName(String name);
-    List<Patient> findByBirthDateOrPatientEmail(LocalDate birthday, String email);
+    List<Patient> findByBirthDateOrEmail(LocalDate birthDate, String email);
 
     List<Patient> findByBirthDateBetween(LocalDate startDate, LocalDate endDate);
 
-    List<Patient> findByPatientNameContaining(String query);
+    List<Patient> findByNameContainingOrderByIdDesc(String query);
 
-    @Query("SELECT p FROM Patient p where p.blood_group =?1")
+    @Query("SELECT p FROM Patient p where p.bloodGroup = ?1")
     List<Patient> findByBloodGroup(@Param("bloodGroup") BloodGroupType bloodGroup);
 
-    @Query("select  p from Patient p where p.birthDate >:birthdate")
-    List<Patient> findByBornAfterDate(@Param("birthdate") LocalDate birthdate);
+    @Query("select p from Patient p where p.birthDate > :birthDate")
+    List<Patient> findByBornAfterDate(@Param("birthDate") LocalDate birthDate);
 
-    @Query("select new com.zenithdev.linkedin.hospitalManagement.dto.BloodGroupCountResponseEntity(p.blood_group,"+
-            "Count(p)) from Patient p group by p.blood_group")
+    @Query("select new com.zenithdev.linkedin.hospitalManagement.dto.BloodGroupCountResponseEntity(p.bloodGroup,"+
+            "Count(p)) from Patient p group by p.bloodGroup")
 //    List<Object[]> countEachBloodGroupType();
     List<BloodGroupCountResponseEntity> countEachBloodGroupType();
 

@@ -2,6 +2,7 @@ package com.zenithdev.linkedin.hospitalManagement.controller;
 
 import com.zenithdev.linkedin.hospitalManagement.dto.LoginRequestDto;
 import com.zenithdev.linkedin.hospitalManagement.dto.LoginResponseDto;
+import com.zenithdev.linkedin.hospitalManagement.dto.SignupResponseDto;
 import com.zenithdev.linkedin.hospitalManagement.security.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<LoginResponseDto> signup(@RequestBody LoginRequestDto loginRequestDto){
-        return ResponseEntity.ok(authService.signup(loginRequestDto));
+    public ResponseEntity<SignupResponseDto> signup(@RequestBody SignupRequestDto signupRequestDto){
+        return ResponseEntity.ok(authService.signup(signupRequestDto));
     }
 
 }

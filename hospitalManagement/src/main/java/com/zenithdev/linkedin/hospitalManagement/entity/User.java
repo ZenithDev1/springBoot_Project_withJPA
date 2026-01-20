@@ -19,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class User implements UserDetails{
 
+    //user details
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
